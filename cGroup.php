@@ -1,0 +1,31 @@
+<?php
+session_name("oa");
+session_start();
+ if(isset($_SESSION['username']) == false)
+	header("Location: page_login.php charset=utf-8");
+else
+	$bye=mysql_query("UPDATE login SET logout='".date("Y-m-d H:i:s")."' WHERE userID='".$_SESSION['username']."' AND login='".$_SESSION['loginTime']."'");
+if($_GET['action'] == "create") 
+{
+	include 'db_connect.php';
+	$str="INSERT INTO groups(name, ownerID) VALUES ('".$_POST['gName']."','".$_SESSION['username']."')";
+	$query=mysql_query($str);
+	//echo $query;
+	if(mysql_affected_rows() == 1) 
+	{
+		$q = mysql_query("SELECT id FROM groups WHERE name = '".$_POST['gName']."' AND ownerID = '".$_SESSION['username']."'");
+		$id = mysql_fetch_array($q);
+		foreach($_POST['members'] as $memID)
+		{
+			$quer=mysql_query("INSERT INTO membership (groupID, memberID) VALUES ('".$id['id']."', '".$memID."') ");
+		}
+		header("Location: createGroup.php?result=success");
+	}
+	else
+	{
+		header("Location: createGroup.php?result=fail");
+	}
+	
+}
+?>
+
