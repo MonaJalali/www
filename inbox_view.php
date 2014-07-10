@@ -113,13 +113,10 @@ echo('
 				<a href="letterPath.php?letter=<?php echo $letter['id']; ?>" class="btn dark">گردش نامه<i class="fa fa-edit"></i></a>
 			</div>
 			<div class="btn-group">
-				<a href="inbox.php" class="btn blue">بازگشت<i class="fa-arrow-left"></i></a>
+				<a href="letter-bargasht.php?action=bargasht&id=<?php echo $letter['id'];?>" class="btn blue">برگشت<i class="fa-arrow-left"></i></a>
 			</div>
 			<div class="btn-group">
 				<a href="printLetter.php?letter=<?php echo $letter['id']; ?>" target="_blank" class="btn default" >چاپ<i class="fa fa-file-o"></i></a>
-			</div>
-			<div class="btn-group">
-				<a href="#" class="btn green">جستجو<i class="fa fa-search"></i></a>
 			</div>
 		</div>		
 	</div>

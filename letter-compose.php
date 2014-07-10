@@ -1,7 +1,7 @@
 <?php
 session_name("oa");
 session_start();
- if(isset($_SESSION['username']) == false)
+if(isset($_SESSION['username']) == false)
 	header("Location: page_login.php charset=utf-8");
 else
 	$bye=mysql_query("UPDATE login SET logout='".date("Y-m-d H:i:s")."' WHERE userID='".$_SESSION['username']."' AND login='".$_SESSION['loginTime']."'");
@@ -83,5 +83,24 @@ if($_GET['action'] == "compose")
 		header("Location: compose.php?result=Success&aft=".$aftt);
 	else
 		header("Location: compose.php?result=Fail");
+}
+else if($_GET['action'] == "draft") 
+{
+	$to = $_POST['realTo'];
+	$subject = $_POST['subject'];
+	$private = $_POST['private'];
+	$priority = $_POST['priority'];
+	$actionType = $_POST['actionType'];
+	$content = $_POST['message'];
+	include 'db_connect.php';
+	$qDraft="insert into drafts (senderID,recieverID,subject,context,private,priority,actionType)
+			values('".$_SESSION['username']."','".$to."','".$subject."','".$content."','".$private."','".$priority."','".$actionType."')";
+	$que = mysql_query($qDraft);
+	echo $qDraft;
+	if(mysql_affected_rows()>0)
+		header("Location: compose.php?result=draftSucceeded");
+	else
+		header("Location: compose.php?result=draftFailed");
+	//*/
 }
 ?>

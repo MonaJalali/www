@@ -340,6 +340,7 @@ Purchase: http://themeforest.net/item/metronic-responsive-admin-dashboard-templa
 				</div>
 			</div>
 <!-- BEGIN PAGE -->
+<div id="pageContent">
 	<table class="table table-striped table-advance table-hover">
 	<thead colspan="8">
 		<tr>
@@ -356,13 +357,9 @@ Purchase: http://themeforest.net/item/metronic-responsive-admin-dashboard-templa
 			for($i = 0; $i < $mnr; $i++)
 			{
 				$department=mysql_fetch_array($departments);
-			//	$department=mysql_query("SELECT `name` FROM departments WHERE id='".$user['departmentID']."' ");
-			//	$departmentName = mysql_fetch_array($department);
-			//	$occupation=mysql_query("SELECT `name` FROM occupation WHERE id='".$user['occupationID']."'");
-			//	$occupationName = mysql_fetch_array($occupation);
 				echo
 				(
-					'<tr class="golabi"');
+					'<tr class="golabi"' onclick="viewDep('.$department['id'].')";
 					echo('>
 						<td class="inbox-small-cells">
 							<input type="checkbox" class="mail-checkbox">
@@ -376,7 +373,23 @@ Purchase: http://themeforest.net/item/metronic-responsive-admin-dashboard-templa
 		?>
 	</tbody>
 </table>
-
+</div>
+<script>
+	function viewDep(id)
+	{
+		var url = 'departments_view.php?department='+id;
+		var ajax = new XMLHttpRequest;
+		ajax.open("GET", url, true);
+		ajax.onreadystatechange = function(){
+			if(ajax.status == 200)
+			{
+				document.getElementById("pageContent").innerHTML = ajax.responseText;
+			};
+		}
+				
+		ajax.send();
+	}
+</script>
 <!-- BEGIN CORE PLUGINS -->   
 	<!--[if lt IE 9]>
 	<script src="assets/plugins/respond.min.js"></script>
