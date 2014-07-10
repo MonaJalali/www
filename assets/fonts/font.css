@@ -1,0 +1,24 @@
+@font-face {
+  font-family: 'B Nazanin';
+  font-style: normal;
+  font-weight: 300;
+  src: local('B Nazanin+ Black'), local('B Nazanin+ Regular'), url(../fonts/B Nazanin+ Regular.ttf) format('ttf');
+}
+@font-face {
+  font-family: 'B Nazanin';
+  font-style: normal;
+  font-weight: 400;
+  src: local('B Nazanin+ Black'), local('B Nazanin+ Bold'), url(../fonts/B Nazanin+ Bold.ttf) format('ttf');
+}
+@font-face {
+  font-family: 'B Nazanin';
+  font-style: normal;
+  font-weight: 600;
+  src: local('B Nazanin+ Black'), local('B Nazanin+ Regular'), url(../fonts/B Nazanin+ Black.ttf) format('ttf');
+}
+@font-face {
+  font-family: 'B Nazanin';
+  font-style: normal;
+  font-weight: 700;
+  src: local('B Nazanin+ Bold'), local('B Nazanin+ Regular'), url(../fonts/B Nazanin+ Regular.ttf) format('ttf');
+}
