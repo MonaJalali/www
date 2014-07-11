@@ -1,6 +1,8 @@
 <?php
+error_reporting(E_ALL ^ E_DEPRECATED);
 session_name("oa");
 session_start();
+include 'db_connect.php';
  if(isset($_SESSION['username']) == false)
 	header("Location: page_login.php charset=utf-8");
 else
@@ -362,7 +364,6 @@ Purchase: http://themeforest.net/item/metronic-responsive-admin-dashboard-templa
 				</div>
 				<div class="modal-body">
 					<?php
-						include 'db_connect.php';
 						$myq="SELECT * FROM hamesh where senderID='".$_SESSION['username']."'";
 						$hamesh=mysql_query($myq);
 						$mnr=mysql_num_rows($hamesh);
