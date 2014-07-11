@@ -5,7 +5,6 @@ if(isset($_SESSION['username']) == false)
 	header("Location: page_login.php charset=utf-8");
 else
 	$bye=mysql_query("UPDATE login SET logout='".date("Y-m-d H:i:s")."' WHERE userID='".$_SESSION['username']."' AND login='".$_SESSION['loginTime']."'");
-echo 'dardo marazzzzzzzzzzzzz';
 function generate()
 {
 	$str = date("Y-m-d H:i:s");
@@ -17,8 +16,9 @@ function generate()
 }
 if($_GET['action'] == "bargasht") 
 {
-	$q=mysql_query("SELECT * FROM letters WHERE id='".$_GET['id']."'");
-	echo "num rows = ".mysql_num_rows($q);
+	$s="SELECT * FROM letters WHERE id='".$_GET['id']."'";
+	echo $s;
+	$bringletter= mysql_query($s);
 	if(mysql_num_rows($q) >= 1)
 	{
 		$data=mysql_fetch_array($q);
