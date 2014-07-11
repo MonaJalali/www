@@ -17,26 +17,31 @@ for($i=0; $i<$countUser; $i++)
 	$countLetter =  mysql_num_rows(mysql_query("select * from letters where senderID='".$user['id']."'"));
 	$totalWorkDone[$i]=$countHamesh+$countForward;
 	$totalWork=$countLetter;
+	echo 'Count hamesh:'.$countHamesh;
+	echo '</br>';
+	echo 'count forward:'.$countForward;
+	echo '</br>';
+	echo 'total work done: '.$totalWorkDone[$i];
+	echo '</br>';
+	echo 'total work: '.$totalWork;
+	echo '</br>';
 	//محاسبه عملکرد واقعی
 	if($totalWork == 0)
-		echo "نامه ای برای پاسخگویی وجود ندارد";
+	{
+		echo "RP: 0";
+		echo '</br>';echo '</br>';
+	}
 	else
 	{
 		$RP = $totalWorkDone[$i]/$totalWork;
 		echo 'RP:'.$RP.'</br>';
+		echo '</br>';echo '</br>';
 	}
 /*
-echo 'Count hamesh:'.$countHamesh;
+
+
+echo $countError;
 echo '</br>';
-echo 'count forward:'.$countForward;
-//echo '</br>';
-//echo $countError;
-echo '</br>';
-echo 'total work done: '.$totalWorkDone;
-echo '</br>';
-echo 'total work: '.$totalWork;
-echo '</br>';
-echo '</br>';echo '</br>';
 */
 }
 
