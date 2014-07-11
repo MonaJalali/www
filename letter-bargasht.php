@@ -2,11 +2,9 @@
 error_reporting(E_ALL ^ E_DEPRECATED);
 session_name("oa");
 session_start();
-include 'db_connect.php';
+
 if(isset($_SESSION['username']) == false)
 	header("Location: page_login.php charset=utf-8");
-else
-	$bye=mysql_query("UPDATE login SET logout='".date("Y-m-d H:i:s")."' WHERE userID='".$_SESSION['username']."' AND login='".$_SESSION['loginTime']."'");
 
 function generate()
 {
@@ -19,6 +17,7 @@ function generate()
 }
 if($_GET['action'] == "bargasht") 
 {
+	include 'db_connect.php';
 	$s="SELECT * FROM letters WHERE id='".$_GET['id']."'";
 	$b= mysql_query($s);
 	if(mysql_num_rows($b) >= 1)

@@ -1,10 +1,10 @@
 <?php
+error_reporting(E_ALL ^ E_DEPRECATED);
 session_name("oa");
 session_start();
+include 'db_connect.php';
  if(isset($_SESSION['username']) == false)
 	header("Location: page_login.php charset=utf-8");
-else
-	$bye=mysql_query("UPDATE login SET logout='".date("Y-m-d H:i:s")."' WHERE userID='".$_SESSION['username']."' AND login='".$_SESSION['loginTime']."'");
 if(isset($_POST['letter_id']))
 {
 	$payload = "&letter=".$_POST['letter_id'];
@@ -15,8 +15,7 @@ else
 }
 $content = $_POST['hamesh'];
 //$letterContent = $_POST['letter_content'];
-//$letterContent=$letterContent.$content;
-//include 'db_connect.php';
+//$letterContent=$letterContent.$content;;
 if($_GET['act'] == "cHamesh") 
 {
 	$query="insert into hamesh (content,senderID)
