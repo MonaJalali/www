@@ -1,6 +1,8 @@
 <?php
+error_reporting(E_ALL ^ E_DEPRECATED);
 session_name("oa");
 session_start();
+include 'db_connect.php';
  if(isset($_SESSION['username']) == false)
 	header("Location: page_login.php charset=utf-8");
 else
@@ -336,7 +338,6 @@ Purchase: http://themeforest.net/item/metronic-responsive-admin-dashboard-templa
 			</div>
 <!-- BEGIN PAGE -->
 	<?php
-	include 'db_connect.php';
 	$q = mysql_query("SELECT * from users where id='".$_SESSION['username']."'");
 	if(mysql_num_rows($q) == 0)
 		die('کاربری یافت نشد.');
