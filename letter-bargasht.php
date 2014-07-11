@@ -20,7 +20,6 @@ function generate()
 if($_GET['action'] == "bargasht") 
 {
 	$s="SELECT * FROM letters WHERE id='".$_GET['id']."'";
-	echo $s;
 	$b= mysql_query($s);
 	if(mysql_num_rows($b) >= 1)
 	{
@@ -30,7 +29,6 @@ if($_GET['action'] == "bargasht")
 				.$dota['senderID']."','".date("Y-m-d H:i:s")."',NULL, 'برگشت', 'نقص مدرک' ,'"
 				.$dota['private']."', '".$dota['priority']."', 'جهت بررسی و اقدام لازم', '"
 				.$dota['attachment']."')";
-		echo $str;
 		$quer=mysql_query($str);
 		if(mysql_affected_rows() == 1)
 			header("Location: inbox.php?result=bargashtSuccess");
