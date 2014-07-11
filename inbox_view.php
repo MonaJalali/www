@@ -143,6 +143,7 @@ echo('
 					data: 
 					{
 						"letter_id":<?php echo $letter['id']?>,
+						//"letter_content":<?php echo $letter['context']?>,
 						"hamesh":content
 					},
 					success:function(result){

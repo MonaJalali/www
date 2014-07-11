@@ -533,6 +533,8 @@ Author: KeenThemes
 			var url = 'inbox_view.php?letter='+id;
 			if (draft == 1)
 				url = 'draft_view.php?letter='+id;
+			else if (trash == 1)
+				url = 'trash_view.php?letter='+id;
 			loading.show();
 			content.html('');
 			//toggleButton(el);

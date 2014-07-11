@@ -396,7 +396,7 @@ Purchase: http://themeforest.net/item/metronic-responsive-admin-dashboard-templa
 							<div class="number"></div>
 							<div class="desc">کارنامه ارزشیابی من</div>
 						</div>
-						<a class="more" href="#">
+						<a class="more" href="evaluation.php">
 						View more <i class="m-icon-swapright m-icon-white"></i>
 						</a>                 
 					</div>
