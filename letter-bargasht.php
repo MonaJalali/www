@@ -19,9 +19,9 @@ if($_GET['action'] == "bargasht")
 	$s="SELECT * FROM letters WHERE id='".$_GET['id']."'";
 	echo $s;
 	$bringletter= mysql_query($s);
-	if(mysql_num_rows($q) >= 1)
+	if(mysql_num_rows($bringletter) >= 1)
 	{
-		$data=mysql_fetch_array($q);
+		$data=mysql_fetch_array($bringletter);
 		$str = "INSERT INTO letters (id,senderID,recieverID,sentDate,recievedDate,subject,context,private,priority,actionType,attachment)
 				VALUES('".generate()."','".$_SESSION['username']."','".$data['senderID']."','".date("Y-m-d H:i:s")."',NULL, 'برگشت', 'نقص مدرک' ,'".$data['private']."', '"$data['priority']."', 'جهت بررسی و اقدام لازم', '".$data['attachment']."')";
 		echo $str;
