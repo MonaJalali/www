@@ -1,4 +1,5 @@
 <?php
+error_reporting(E_ALL ^ E_DEPRECATED);
 session_name("oa");
 session_start();
 if(isset($_SESSION['username']) == false)
@@ -18,12 +19,15 @@ if($_GET['action'] == "bargasht")
 {
 	$s="SELECT * FROM letters WHERE id='".$_GET['id']."'";
 	echo $s;
-	$bringletter= mysql_query($s);
-	if(mysql_num_rows($q) >= 1)
+	$b= mysql_query($s);
+	if(mysql_num_rows($b) >= 1)
 	{
-		$data=mysql_fetch_array($q);
+		$dota=mysql_fetch_array($b);
 		$str = "INSERT INTO letters (id,senderID,recieverID,sentDate,recievedDate,subject,context,private,priority,actionType,attachment)
-				VALUES('".generate()."','".$_SESSION['username']."','".$data['senderID']."','".date("Y-m-d H:i:s")."',NULL, 'برگشت', 'نقص مدرک' ,'".$data['private']."', '"$data['priority']."', 'جهت بررسی و اقدام لازم', '".$data['attachment']."')";
+				VALUES('".generate()."','".$_SESSION['username']."','"
+				.$dota['senderID']."','".date("Y-m-d H:i:s")."',NULL, 'برگشت', 'نقص مدرک' ,'"
+				.$dota['private']."', '".$dota['priority']."', 'جهت بررسی و اقدام لازم', '"
+				.$dota['attachment']."')";
 		echo $str;
 		$quer=mysql_query($str);
 		if(mysql_affected_rows() == 1)

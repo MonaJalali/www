@@ -1,4 +1,5 @@
 <?php
+error_reporting(E_ALL ^ E_DEPRECATED);
 session_name("oa");
 session_start();
  if(isset($_SESSION['username']) == false)
