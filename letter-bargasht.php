@@ -27,7 +27,7 @@ if($_GET['action'] == "bargasht")
 		echo $str;
 		$quer=mysql_query($str);
 		if(mysql_affected_rows() == 1)
-			header("Location: inbox.php?result=bargashtSucceeded");
+			header("Location: inbox.php?result=bargashtSuccess");
 		else
 			header("Location: compose.php?result=bargashtFailed");
 	}
