@@ -2,6 +2,7 @@
 error_reporting(E_ALL ^ E_DEPRECATED);
 session_name("oa");
 session_start();
+include 'db_connect.php';
  if(isset($_SESSION['username']) == false)
 	header("Location: page_login.php charset=utf-8");
 else
@@ -10,7 +11,7 @@ if(isset($_GET['letter']) == false)
 {
 	header("Location: inbox.php");
 }
-		include 'db_connect.php';
+		
 		$q=mysql_query("SELECT * from letters where id='".$_GET['letter']."'");
 		if(mysql_num_rows($q) == 0)
 			die('نامه ای یافت نشد.');
