@@ -1,6 +1,8 @@
 <?php
+error_reporting(E_ALL ^ E_DEPRECATED);
 session_name("oa");
 session_start();
+include 'db_connect.php';
  if(isset($_SESSION['username']) == false)
 	header("Location: page_login.php charset=utf-8");
 else
@@ -359,8 +361,7 @@ Purchase: http://themeforest.net/item/metronic-responsive-admin-dashboard-templa
 				$department=mysql_fetch_array($departments);
 				echo
 				(
-					'<tr class="golabi"' onclick="viewDep('.$department['id'].')";
-					echo('>
+					'<tr class="golabi" onclick="viewDep('.$department['id'].')">
 						<td class="inbox-small-cells">
 							<input type="checkbox" class="mail-checkbox">
 						</td>

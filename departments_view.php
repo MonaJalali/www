@@ -1,10 +1,12 @@
 <?php
+error_reporting(E_ALL ^ E_DEPRECATED);
 session_name("oa");
 session_start();
+include 'db_connect.php';
  if(isset($_SESSION['username']) == false) 
 	header("Location: page_login.php charset=utf-8");
-//else
-	//$bye=mysql_query("UPDATE login SET logout='".date("Y-m-d H:i:s")."' WHERE userID='".$_SESSION['username']."' AND login='".$_SESSION['loginTime']."'");
+else
+	$bye=mysql_query("UPDATE login SET logout='".date("Y-m-d H:i:s")."' WHERE userID='".$_SESSION['username']."' AND login='".$_SESSION['loginTime']."'");
 ?>
 <div class="inbox-view-info">
 	<div class="row">
@@ -12,14 +14,14 @@ session_start();
 	</div>		
 </div>
 <?php
-	include 'db_connect.php';
+	
 	$q = mysql_query("SELECT * from departments where id='".$_GET['department']."'");
 	if(mysql_num_rows($q) == 0)
 		die('بخشی یافت نشد');
 	$dep = mysql_fetch_array($q);
 	echo('
 	<div >
-	<form enctype="multipart/form-data" id="formUpdateUser" method="post" action="updateUser.php?action=update&user='.$user['id'].'" class="form-horizontal">
+	<form enctype="multipart/form-data" id="formUpdateUser" method="post" action="updateUser.php?action=update&user='.$dep['id'].'" class="form-horizontal">
 		<div class="form-body">
 			<h3 class="form-section">ویرایش بخش</h3>
 			<div class="row">
@@ -27,7 +29,7 @@ session_start();
 					<div id="divUser" class="form-group">
 						<label class="control-label col-md-3">شناسه بخش</label>
 						<div class="col-md-9">
-							<input id="username" name="username" type="text" readonly="" class="form-control" value="'.$user['id'].'" onchange=chUser()>
+							<input id="username" name="username" type="text" readonly="" class="form-control" value="'.$dep['id'].'" onchange=chUser()>
 							<span id="spanUser" class="help-block"></span>
 						</div>
 					</div>
@@ -49,7 +51,7 @@ session_start();
 				<div class="col-md-6">
 					<div class="form-group">
 						<div class="col-md-9">
-							<input id="" name="" type="text" readonly="" class="form-control" value="'.$user['name'].'">
+							<input id="" name="" type="text" readonly="" class="form-control" value="'.$dep['name'].'">
 							<span class="help-block"></span>
 						</div>
 					</div>
