@@ -14,7 +14,7 @@ else
 	$payload="";
 }
 $content = $_POST['hamesh'];
-$letterContent = $_POST['letter_content'];
+//$letterContent = $_POST['letter_content'];
 //$letterContent=$letterContent.$content;
 //include 'db_connect.php';
 if($_GET['act'] == "cHamesh") 
