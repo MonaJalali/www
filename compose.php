@@ -51,6 +51,8 @@ Purchase: http://themeforest.net/item/metronic-responsive-admin-dashboard-templa
 	<link href="assets/plugins/uniform/css/uniform.default.css" rel="stylesheet" type="text/css"/>
 	<!-- END GLOBAL MANDATORY STYLES -->
 	<!-- BEGIN PAGE LEVEL PLUGIN STYLES --> 
+	<link href="assets/plugins/bootstrap-modal/css/bootstrap-modal-bs3patch.css" rel="stylesheet" type="text/css"/>
+	<link href="assets/plugins/bootstrap-modal/css/bootstrap-modal.css" rel="stylesheet" type="text/css"/>
 	<link href="assets/plugins/gritter/css/jquery.gritter-rtl.css" rel="stylesheet" type="text/css"/>
 	<link href="assets/plugins/bootstrap-daterangepicker/daterangepicker-bs3.css" rel="stylesheet" type="text/css" />
 	<link href="assets/plugins/fullcalendar/fullcalendar/fullcalendar.css" rel="stylesheet" type="text/css"/>
@@ -351,16 +353,53 @@ Purchase: http://themeforest.net/item/metronic-responsive-admin-dashboard-templa
 			</div>
 			<!-- END PAGE HEADER-->
 	<!-- START PAGE CONTENT-->
+	<div style="display: block; position: absolute; top:20%; left:20%" >
+	<!-- full width -->
+			<div id="full-width" class="modal container fade" tabindex="-1" style="position: relative; top:20%; left:65%">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+					<h4 class="modal-title"><strong>لیست هامش ها</strong></h4>
+				</div>
+				<div class="modal-body">
+					<?php
+						include 'db_connect.php';
+						$myq="SELECT * FROM hamesh where senderID='".$_SESSION['username']."'";
+						$hamesh=mysql_query($myq);
+						$mnr=mysql_num_rows($hamesh);
+						$hameshList = mysql_fetch_array($hamesh); 
+						for($i = 0; $i < $mnr; $i++)
+						{
+							echo
+							(
+							'<tr ');
+							echo('>
+							<td class="inbox-small-cells">
+								<input type="checkbox" id="khar" value="'.$hameshList['id'].'" class="mail-checkbox">
+							</td>
+							<td class="view-message">'.$hameshList['content'].'</td>
+							</tr>'
+							);		
+						}
+					
+					?>
+				</div>
+				<div class="modal-footer">
+					<button type="button" data-dismiss="modal" class="btn btn-default">لغو</button>
+					<button type="button" class="btn blue" name="hameshCompose" onclick=hameshValidation('forward') data-dismiss="modal" >ارجاع هامش</button>
+				</div>
+			</div>
+		</div>
 		<?php
 					if(isset($_GET['error']) and $_GET['error']=='WrongTo')
 						echo " گیرنده با این نام یافت نشد<br>";
 				?>
-		<form class="inbox-compose form-horizontal" id="form1" name="form1" action="letter-compose.php?action=compose" method="POST" enctype="multipart/form-data">
+		<form class="inbox-compose form-horizontal" id="form1" name="form1" action="" method="POST" enctype="multipart/form-data">
 			<div class="inbox-compose-btn">
 				<button class="btn green" type="button" onclick=formValidation()><i class="fa fa-check" ></i>ارسال</button>
 				<button class="btn" type="button" onclick="delCompose()">حذف</button>
-				<button class="btn" type="button">پیش نویس</button>
-				<button class="btn" type="button">لیست هامشها</button>
+				<!--<form id="draft" action="draft.php?action=draft" method="POST" >-->
+				<button class="btn" type="button" onclick="saveDraft()">پیش نویس</button><!--</form>-->
+				<button class="btn" type="button" data-target="#full-width" data-toggle="modal">لیست هامشها</button>
 			</div>
 			<div class="inbox-form-group mail-to">
 				<label class="control-label">به:</label>
@@ -428,7 +467,7 @@ Purchase: http://themeforest.net/item/metronic-responsive-admin-dashboard-templa
 			<div class="inbox-compose-btn">
 				<button class="btn green" type="button" onclick=formValidation()><i class="fa fa-check"></i>ارسال</button>
 				<button class="btn" type="button" onclick="delCompose()">حذف</button>
-				<button class="btn" type="button">پیش نویس</button>
+				<button class="btn" type="button" onclick="saveDraft()">پیش نویس</button>
 				<button class="btn" type="button">لیست هامشها</button>
 			</div>
 			</tr>
@@ -516,8 +555,14 @@ Purchase: http://themeforest.net/item/metronic-responsive-admin-dashboard-templa
 				alert("متن نامه خالی است!");
 			else
 			{
+				document.getElementById('form1').setAttribute('action','letter-compose.php?action=compose');
 				document.getElementById('form1').submit();
 			}
+		}
+		function saveDraft(){
+			document.getElementById('form1').setAttribute('action','letter-compose.php?action=draft');
+			document.getElementById('form1').submit();
+			//window.location.href="letter-compose.php?action=draft";
 		}
 	</script>
 	<script>//for google suggest-like TO field:
