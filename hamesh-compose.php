@@ -14,7 +14,9 @@ else
 	$payload="";
 }
 $content = $_POST['hamesh'];
-include 'db_connect.php';
+$letterContent = $_POST['letter_content'];
+//$letterContent=$letterContent.$content;
+//include 'db_connect.php';
 if($_GET['act'] == "cHamesh") 
 {
 	$query="insert into hamesh (content,senderID)
@@ -47,7 +49,10 @@ else if($_GET['act'] == "forward")
 		$hameshID = mysql_insert_id();
 		$quer =mysql_query("insert into letterhamesh (letterID,hameshID) values ('".$_POST['letter_id']."','".$hameshID."')");
 		if( mysql_affected_rows() == 1)
+		{
 			echo("هامش با موفقیت ارجاع شد");
+			//$que = mysql_query("update letters SET context="$letterContent" where id="$_POST['letter_id']" ");
+		}
 		else
 			echo("هامش با موفقیت ارجاع نشد");
 	}

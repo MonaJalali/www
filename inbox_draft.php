@@ -61,7 +61,7 @@ else
 						<td class="inbox-small-cells"><i class="fa fa-star"></i></td>
 						<td class="view-message  hidden-xs">'.$recieverName['name'].' '.$recieverName['familyName'].'</td>
 						<td class="view-message" name="letS'.$data['id'].'" onclick="viewMe('.$data['id'].',1)">'.$data['subject'].'</td>
-						<td class="view-message ">'.$data['private'].'</td>
+						<td class="view-message sib">'); echo (($data['private'] == '0') ? ('غیرمحرمانه') : ('محرمانه')); echo('</td>
 						<td class="view-message ">'.$data['actionType'].'</td>
 						<td class="view-message  inbox-small-cells"><i class="fa fa-paper-clip"></i></td>
 					</tr>'

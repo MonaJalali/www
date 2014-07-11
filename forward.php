@@ -384,7 +384,7 @@ Purchase: http://themeforest.net/item/metronic-responsive-admin-dashboard-templa
 				$subject = $data['subject'];
 				$private = $data['private'];
 				$actionType = $data['actionType'];
-				$content =$data['context']; 
+				$content =$data['context'].'</br>.............</br>'; 
 			?>
 			<div class="inbox-compose-btn">
 				<button class="btn blue" type="button" onclick=formValidation()><i class="fa fa-check" ></i>ارسال</button>
